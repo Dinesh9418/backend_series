@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
-app.arguments(
+app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
     Credential: true,
@@ -16,4 +16,7 @@ app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+//routes
+import userRouter from "../src/routes/user.routes.js";
+app.use("/api/v1/users", userRouter);
 export { app };
